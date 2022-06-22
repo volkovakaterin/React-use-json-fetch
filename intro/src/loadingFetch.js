@@ -3,10 +3,10 @@ import useJsonFetch from './useJsonFetch';
 
 function LoadingFetch(props){
     const [visibility, setVisibility] = useState('visible');
-    const loading = useJsonFetch('loading');
+    const loading = useJsonFetch('http://localhost:7070/loading');
     let latestLoading = useRef('loading');
-    if(loading[1] !== 'loading') {
-        latestLoading.current = loading[1];
+    if(loading !== 'loading') {
+        latestLoading.current = loading;
     }
     useEffect(() => {
         function preloader() {

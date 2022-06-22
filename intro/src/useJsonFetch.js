@@ -1,31 +1,18 @@
 import React, { useState, useEffect } from 'react';
 
 function useJsonFetch(props){
-    const [data, setData] = useState();
-    const [loading, setLoading] = useState('loading');
-    const [err, setError] = useState('1');
+    const [state, setState] = useState('loading');
     useEffect(() => {
       function loading() {
-        fetch(`http://localhost:7070/${props}`)
+        fetch(props)
           .then(res => res.json())
-          .then(
-            (result) => {
-                if(props === 'data') {setData(result)}
-                else if(props === 'loading') {setLoading(result)}
-                else if(props === 'error') {setError(result)}
-              },
-            (error) => {
-                if(props === 'data') {setData(error)}
-                else if(props === 'loading') {setLoading(error)}
-                else if(props === 'error') {setError(error)}
-            }
-          )
-      }  return function cleanup() {
-        loading()
-      };
-    }, [])
+          .then((result) => {setState(result)},
+            (error) => {setState(error)}) 
+            } 
+       return loading()  
+    }, []);
     
-    return [data, loading, err]
+    return state;
 }
 
 export default useJsonFetch;

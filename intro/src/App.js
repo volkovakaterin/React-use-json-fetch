@@ -1,4 +1,3 @@
-import useJsonFetch from './useJsonFetch';
 import DataFetch from './dataFetch';
 import LoadingFetch from './loadingFetch';
 import ErrorFetch from './errorFetch';
